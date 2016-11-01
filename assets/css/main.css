@@ -1,0 +1,15 @@
+/* line 1, /Users/rutvijdhotey/Documents/Git/AlgoliaRestaurant/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px; }
+
+/* line 6, /Users/rutvijdhotey/Documents/Git/AlgoliaRestaurant/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+.welcome-container {
+  margin: 50px 0 0 0;
+  text-align: center;
+  font-size: 2em; }
+  /* line 11, /Users/rutvijdhotey/Documents/Git/AlgoliaRestaurant/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+  .welcome-container p {
+    margin: 5px; }
+
+/*# sourceMappingURL=../../scss */
