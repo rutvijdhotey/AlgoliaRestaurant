@@ -1,15 +1,134 @@
-/* line 1, /Users/rutvijdhotey/Documents/Git/AlgoliaRestaurant/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+/* line 1, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 13px; }
 
-/* line 6, /Users/rutvijdhotey/Documents/Git/AlgoliaRestaurant/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+/* line 6, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
 .welcome-container {
   margin: 50px 0 0 0;
   text-align: center;
   font-size: 2em; }
-  /* line 11, /Users/rutvijdhotey/Documents/Git/AlgoliaRestaurant/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+  /* line 11, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
   .welcome-container p {
     margin: 5px; }
+
+/* SEARCH INPUT
+// ------------------------- */
+/* line 21, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#search-input {
+  font-size: 22px;
+  font-weight: 100;
+  width: 60%;
+  margin-left: 20%;
+  padding: 10px;
+  border: solid 5px #eee;
+  border-radius: 10px; }
+
+/* line 32, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#search-input, #search-input:focus {
+  transition: border-color .3s ease-in;
+  outline: 0; }
+
+/* line 36, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#search-input:focus {
+  border-color: #545f90; }
+
+/* line 39, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#search-input::-webkit-input-placeholder, #search-input:-moz-placeholder, #search-input:-moz-placeholder, #search-input:-ms-input-placeholder {
+  font-weight: 100;
+  color: #999; }
+
+/* line 44, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#search-bar {
+  padding: 15px;
+  background-color: #4e93ff; }
+
+/* line 49, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#search-input-icon {
+  position: relative; }
+
+/* line 52, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#search-input-icon:before {
+  position: absolute;
+  right: 20%;
+  bottom: 17px;
+  width: 20px;
+  height: 20px;
+  content: '';
+  cursor: default;
+  background: url(../img/search_icon.png) no-repeat; }
+
+/* line 63, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#search-input-icon.empty:before {
+  cursor: pointer;
+  background-image: url(../img/delete_icon.png); }
+
+/* line 70, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+.hit-image {
+  display: inline-block;
+  width: 16%; }
+
+/* line 74, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+.hit-image img {
+  max-width: 100%;
+  max-height: 180px; }
+
+/* PAGINATION
+// ------------------------- */
+/* line 83, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination {
+  margin-top: 60px; }
+
+/* line 86, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination ul {
+  font-size: 0;
+  list-style-type: none;
+  text-align: center; }
+
+/* line 91, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination li {
+  font-size: 14px;
+  display: inline; }
+
+/* line 95, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination a {
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #000;
+  border: 1px solid #eee;
+  border-right: none; }
+
+/* line 102, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination a:hover {
+  background: #f5f5f5; }
+
+/* line 105, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination li:first-child a {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px; }
+
+/* line 109, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination li:last-child a {
+  border-right: 1px solid #eee;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px; }
+
+/* line 114, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination li.active a {
+  color: white;
+  border-color: #ed5565;
+  background: #ed5565; }
+
+/* line 119, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination li.active a:hover {
+  cursor: default; }
+
+/* line 122, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination li.disabled a {
+  cursor: not-allowed; }
+
+/* line 125, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
+#pagination li.disabled a:hover {
+  background: none; }
 
 /*# sourceMappingURL=../../scss */

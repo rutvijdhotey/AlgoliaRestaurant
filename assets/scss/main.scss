@@ -12,3 +12,116 @@ body {
     margin: 5px;
   }
 }
+
+
+/* SEARCH INPUT
+// ------------------------- */
+
+
+#search-input {
+	font-size: 22px;
+	font-weight: 100;
+	width: 60%;
+	margin-left: 20%;
+  //margin-top: 1em;
+	padding: 10px;
+	border: solid 5px #eee;
+  border-radius: 10px;
+}
+
+#search-input, #search-input:focus {
+	transition: border-color .3s ease-in;
+	outline: 0;
+}
+#search-input:focus {
+	border-color: #545f90;
+}
+#search-input::-webkit-input-placeholder, #search-input:-moz-placeholder, #search-input:-moz-placeholder, #search-input:-ms-input-placeholder {
+	font-weight: 100;
+	color: #999;
+}
+
+#search-bar{
+  padding : 15px;
+  background-color: #4e93ff;
+}
+
+#search-input-icon {
+	position: relative;
+}
+#search-input-icon:before {
+	position: absolute;
+	right: 20%;
+	bottom: 17px;
+	width: 20px;
+	height: 20px;
+	content: '';
+	cursor: default;
+	background: url(../img/search_icon.png) no-repeat;
+
+}
+#search-input-icon.empty:before {
+	cursor: pointer;
+	background-image: url(../img/delete_icon.png);
+}
+
+
+
+.hit-image {
+	display: inline-block;
+	width: 16%;
+}
+.hit-image img {
+	max-width: 100%;
+	max-height: 180px;
+}
+
+
+/* PAGINATION
+// ------------------------- */
+
+#pagination {
+	margin-top: 60px;
+}
+#pagination ul {
+	font-size: 0;
+	list-style-type: none;
+	text-align: center;
+}
+#pagination li {
+	font-size: 14px;
+	display: inline;
+}
+#pagination a {
+	padding: 8px 12px;
+	text-decoration: none;
+	color: #000;
+	border: 1px solid #eee;
+	border-right: none;
+}
+#pagination a:hover {
+	background: #f5f5f5;
+}
+#pagination li:first-child a {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+#pagination li:last-child a {
+	border-right: 1px solid #eee;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+#pagination li.active a {
+	color: white;
+	border-color: #ed5565;
+	background: #ed5565;
+}
+#pagination li.active a:hover {
+	cursor: default;
+}
+#pagination li.disabled a {
+	cursor: not-allowed;
+}
+#pagination li.disabled a:hover {
+	background: none;
+}
