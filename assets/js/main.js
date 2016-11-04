@@ -1,19 +1,9 @@
-
-
-$(document).on('click', '.go-to-page', function(e) {
-  e.preventDefault();
-  $('html, body').animate({scrollTop: 0}, '500', 'swing');
-  algoliaHelper.setCurrentPage(+$(this).data('page') - 1).search();
-});
-
-$(document).on('click', '.toggle-refine', function(e) {
-  e.preventDefault();
-  algoliaHelper.toggleRefine($(this).data('facet'), $(this).data('value')).search();
-});
+$(document).ready(function() {
+'use strict';
 
 
 
-//Initialise Algolia Search
+// Initialise Algolia Search
 var applicationID = '0ERK48U88S';
 var apiKey = 'ab7cdae6fba29f65d112ec2bf92a412e';
 var indexToSearch = 'Restaurants';
@@ -28,18 +18,19 @@ var PARAMS = {
 var FACETS_ORDER_OF_DISPLAY = ['food_type','stars'];
 var FACETS_LABELS = {food_type: 'Food Type/Cuisines' , stars: 'Stars'};
 
-//Client + helper init
+// Client + helper init
 var client = algoliasearch(applicationID,apiKey);
 var algoliaHelper = algoliasearchHelper(client,indexToSearch,PARAMS);
 
 
-$searchInput = $('#search-input');
-$searchInputIcon = $('#search-input-icon');
-$main = $('main');
-$hits = $('#hits');
-$stats = $('#stats');
-$facets = $('#facets');
-$pagination = $('#pagination');
+// DOM BINDING
+var $searchInput = $('#search-input');
+var $searchInputIcon = $('#search-input-icon');
+var $main = $('main');
+var $hits = $('#hits');
+var $stats = $('#stats');
+var $facets = $('#facets');
+var $pagination = $('#pagination');
 
 // Hogan templates binding
 var hitTemplate = Hogan.compile($('#hit-template').text());
@@ -48,29 +39,38 @@ var facetTemplate = Hogan.compile($('#facet-template').text());
 var paginationTemplate = Hogan.compile($('#pagination-template').text());
 var noResultsTemplate = Hogan.compile($('#no-results-template').text());
 
-
+algoliaHelper.setQuery("").search();
+// SERACH BINDING
 // Input binding
 $searchInput
-.on('keyup', function() {
-  var query = $(this).val();
-  toggleIconEmptyInput(query);
-  algoliaHelper.setQuery(query).search();
-})
-.focus();
+  .on('input propertychange', function(e) {
+    var query = e.currentTarget.value;
 
-$searchInputIcon.on('click', function(e) {
-  e.preventDefault();
-  $searchInput.val('').keyup().focus();
-});
+    toggleIconEmptyInput(query);
+    algoliaHelper.setQuery(query).search();
+  })
+  .focus();
 
-function toggleIconEmptyInput(query) {
-  $searchInputIcon.toggleClass('empty', query.trim() !== '');
-}
+  $searchInputIcon.on('click', function(e) {
+    e.preventDefault();
+    $searchInput.val('').keyup().focus();
+  });
+
+  // Search results
+  algoliaHelper.on('result', function(content, state) {
+    renderStats(content);
+    renderHits(content);
+    renderFacets(content, state);
+    renderPagination(content);
+    handleNoResults(content);
+  });
+
+
+// RENDERING
 
 function renderHits(content) {
   $hits.html(hitTemplate.render(content));
 }
-
 
 function renderStats(content) {
   var stats = {
@@ -80,7 +80,6 @@ function renderStats(content) {
   };
   $stats.html(statsTemplate.render(stats));
 }
-
 
 function renderPagination(content) {
   var pages = [];
@@ -104,7 +103,6 @@ function renderPagination(content) {
   $pagination.html(paginationTemplate.render(pagination));
 }
 
-
 function renderFacets(content, state) {
   var facetsHtml = '';
   for (var facetIndex = 0; facetIndex < FACETS_ORDER_OF_DISPLAY.length; ++facetIndex) {
@@ -125,15 +123,6 @@ function renderFacets(content, state) {
 }
 
 
-
-algoliaHelper.on('result', function(content, state) {
-  renderStats(content);
-  renderHits(content);
-  renderFacets(content, state);
-  //bindSearchObjects(state);
-  renderPagination(content);
-  handleNoResults(content);
-});
 
 // NO RESULTS
 // ==========
@@ -180,3 +169,34 @@ function handleNoResults(content) {
   }
   $hits.html(noResultsTemplate.render({query: content.query, filters: filters}));
 }
+
+
+$(document).on('click', '.toggle-refine', function(e) {
+  e.preventDefault();
+  algoliaHelper.toggleRefine($(this).data('facet'), $(this).data('value')).search();
+});
+
+$(document).on('click', '.go-to-page', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop: 0}, '500', 'swing');
+  algoliaHelper.setCurrentPage(+$(this).data('page') - 1).search();
+});
+
+$searchInputIcon.on('click', function(e) {
+  e.preventDefault();
+  $searchInput.val('').keyup().focus();
+});
+
+$(document).on('click', '.clear-all', function(e) {
+  e.preventDefault();
+  $searchInput.val('').focus();
+  algoliaHelper.setQuery('').clearRefinements().search();
+});
+
+
+function toggleIconEmptyInput(query) {
+    $searchInputIcon.toggleClass('empty', query.trim() !== '');
+  }
+
+
+});
