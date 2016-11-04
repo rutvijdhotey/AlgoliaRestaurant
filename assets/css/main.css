@@ -53,7 +53,7 @@ main {
   font-size: 22px;
   font-weight: 100;
   width: 80%;
-  margin-left: 5.5%;
+  margin-left: 7.5%;
   padding: 10px;
   border: solid 5px #eee;
   border-radius: 10px; }
@@ -89,7 +89,7 @@ main {
 /* line 86, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
 #search-input-icon:before {
   position: absolute;
-  right: 10%;
+  right: 12.5%;
   bottom: 17px;
   width: 20px;
   height: 20px;
