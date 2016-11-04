@@ -26,7 +26,7 @@ main {
 /* line 23, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
 #left-column {
   float: left;
-  width: 23%;
+  width: 20%;
   padding: 5px;
   border-left: 1px solid #eee;
   border-bottom: 1px solid #eee; }
@@ -43,7 +43,7 @@ main {
 
 /* line 41, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
 .container {
-  padding: 60px;
+  padding: 20px;
   background: url(../img/background.jpg); }
 
 /* SEARCH INPUT
@@ -53,7 +53,7 @@ main {
   font-size: 22px;
   font-weight: 100;
   width: 80%;
-  margin-left: 10%;
+  margin-left: 5.5%;
   padding: 10px;
   border: solid 5px #eee;
   border-radius: 10px; }
@@ -188,7 +188,7 @@ main {
 
 /* line 182, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
 .facet-link {
-  font-size: 13px;
+  font-size: 0.4em;
   line-height: 1.2;
   text-decoration: none;
   color: #000;

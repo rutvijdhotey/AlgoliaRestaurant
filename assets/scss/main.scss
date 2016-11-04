@@ -22,7 +22,7 @@ main {
 }
 #left-column {
 	float: left;
-	width: 23%;
+	width: 20%;
   padding: 5px;
   border-left: 1px solid #eee;
   border-bottom: 1px solid #eee;
@@ -39,7 +39,7 @@ main {
 }
 
 .container{
-  padding: 60px;
+  padding: 20px;
   background: url(../img/background.jpg);
 }
 /* SEARCH INPUT
@@ -50,7 +50,7 @@ main {
 	font-size: 22px;
 	font-weight: 100;
 	width: 80%;
-	margin-left: 10%;
+	margin-left: 5.5%;
 	padding: 10px;
 	border: solid 5px #eee;
   border-radius: 10px;
@@ -180,7 +180,7 @@ main {
   padding: 2px;
 }
 .facet-link {
-	font-size: 13px;
+	font-size: 0.4em;
 	line-height: 1.2;
 	text-decoration: none;
 	color: #000;
