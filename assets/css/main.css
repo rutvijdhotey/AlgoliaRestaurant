@@ -165,8 +165,7 @@ main {
 // ------------------------- */
 /* line 163, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
 .facet {
-  margin-bottom: 24px;
-  border-bottom: 1px solid #eee; }
+  margin-bottom: 24px; }
 
 /* line 167, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
 .facet h5 {
@@ -188,7 +187,7 @@ main {
 
 /* line 182, /Users/rutvijdhotey/Documents/Git/AA/csstest-restaurant-locator-master-with-js-test/assets/scss/main.scss */
 .facet-link {
-  font-size: 0.4em;
+  font-size: 0.8em;
   line-height: 1.2;
   text-decoration: none;
   color: #000;
