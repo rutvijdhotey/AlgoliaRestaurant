@@ -40,6 +40,7 @@ var paginationTemplate = Hogan.compile($('#pagination-template').text());
 var noResultsTemplate = Hogan.compile($('#no-results-template').text());
 
 algoliaHelper.setQuery("").search();
+console.log("sss");
 // SERACH BINDING
 // Input binding
 $searchInput
