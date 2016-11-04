@@ -12,21 +12,26 @@ $(document).on('click', '.toggle-refine', function(e) {
 });
 
 
+
 //Initialise Algolia Search
 var applicationID = '0ERK48U88S';
 var apiKey = 'ab7cdae6fba29f65d112ec2bf92a412e';
 var indexToSearch = 'Restaurants';
 var PARAMS = {
-    hitsPerPage : 10,
+    hitsPerPage : 5,
     maxValuesPerFacet : 10,
-    facets: ['food_type'],
-    disjunctiveFacets: ['stars'],
+    facets: ['stars'],
+    disjunctiveFacets: ['food_type'],
     index: indexToSearch
 };
+
+var FACETS_ORDER_OF_DISPLAY = ['food_type','stars'];
+var FACETS_LABELS = {food_type: 'Food Type/Cuisines' , stars: 'Stars'};
 
 //Client + helper init
 var client = algoliasearch(applicationID,apiKey);
 var algoliaHelper = algoliasearchHelper(client,indexToSearch,PARAMS);
+
 
 $searchInput = $('#search-input');
 $searchInputIcon = $('#search-input-icon');
@@ -43,18 +48,6 @@ var facetTemplate = Hogan.compile($('#facet-template').text());
 var paginationTemplate = Hogan.compile($('#pagination-template').text());
 var noResultsTemplate = Hogan.compile($('#no-results-template').text());
 
-// Input binding
-$searchInput
-.on('keyup', function() {
-  var query = $(this).val();
-  algoliaHelper.setQuery(query).search();
-})
-.focus();
-
-// Search results
-algoliaHelper.on('result', function(content, state) {
-  console.log(content);
-});
 
 // Input binding
 $searchInput
@@ -74,21 +67,10 @@ function toggleIconEmptyInput(query) {
   $searchInputIcon.toggleClass('empty', query.trim() !== '');
 }
 
-
-// Search results
-algoliaHelper.on('result', function(content, state) {
-  renderHits(content);
-});
-
 function renderHits(content) {
   $hits.html(hitTemplate.render(content));
 }
 
-// Search results
-algoliaHelper.on('result', function(content, state) {
-  renderStats(content);
-  renderHits(content);
-});
 
 function renderStats(content) {
   var stats = {
@@ -99,14 +81,6 @@ function renderStats(content) {
   $stats.html(statsTemplate.render(stats));
 }
 
-
-
-// Search results
-algoliaHelper.on('result', function(content, state) {
-  renderStats(content);
-  renderHits(content);
-  renderPagination(content);
-});
 
 function renderPagination(content) {
   var pages = [];
@@ -130,42 +104,28 @@ function renderPagination(content) {
   $pagination.html(paginationTemplate.render(pagination));
 }
 
-//.initIndex('Restaurants').setSettings({"attributesForFaceting":["food_type"]});
-var FACETS_ORDER_OF_DISPLAY = ['food_type'];
-var FACETS_LABELS = {food_type: 'Food Type/Cuisines' , stars: 'Stars'};
-
-
-// Search results
-algoliaHelper.on('result', function(content, state) {
-  renderStats(content);
-  renderHits(content);
-  renderFacets(content, state);
-  renderPagination(content);
-});
-
-
-
 
 function renderFacets(content, state) {
   var facetsHtml = '';
-  var facetName = 'food_type';
-  var facetResult = content.getFacetByName(facetName);
-  var facetContent = {};
-  if (facetResult) {
-    facetContent = {
-      facet: facetName,
-      title: FACETS_LABELS[facetName],
-      values: content.getFacetValues(facetName, {sortBy: ['isRefined:desc', 'count:desc']}),
-      disjunctive: $.inArray(facetName, PARAMS.disjunctiveFacets) !== -1
-    };
-    facetsHtml += facetTemplate.render(facetContent);
-  }
+  for (var facetIndex = 0; facetIndex < FACETS_ORDER_OF_DISPLAY.length; ++facetIndex) {
+    var facetName = FACETS_ORDER_OF_DISPLAY[facetIndex];
+    var facetResult = content.getFacetByName(facetName);
+    if (!facetResult) continue;
+    var facetContent = {};
+    // Conjunctive + Disjunctive facets
+      facetContent = {
+        facet: facetName,
+        title: FACETS_LABELS[facetName] || facetName,
+        values: content.getFacetValues(facetName, {sortBy: ['isRefined:desc', 'count:desc']}),
+        disjunctive: $.inArray(facetName, PARAMS.disjunctiveFacets) !== -1
+      };
+      facetsHtml += facetTemplate.render(facetContent);
+    }
   $facets.html(facetsHtml);
 }
 
 
 
-// Search results
 algoliaHelper.on('result', function(content, state) {
   renderStats(content);
   renderHits(content);
